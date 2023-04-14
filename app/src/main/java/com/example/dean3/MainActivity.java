@@ -8,9 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.dean3.Fragement.GioHangFragment;
+import com.example.dean3.Fragement.HistoryFragment;
 import com.example.dean3.Fragement.KhamPhaFragment;
 import com.example.dean3.Fragement.TrangChuFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,17 +52,24 @@ public class MainActivity extends AppCompatActivity {
              fragment = new TrangChuFragment();
                 ActionBar actionBar = getSupportActionBar();
                 actionBar.setTitle("Trang chủ");
+
+
                 actionBar.setDisplayHomeAsUpEnabled(false);
+
 
              break;
             case R.id.mnuSearch:
                 fragment = new KhamPhaFragment();
+
               actionBar = getSupportActionBar();
+                actionBar.setTitle("Search");
+
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 break;
             case R.id.mnuCart:
                 fragment = new GioHangFragment();
                 actionBar = getSupportActionBar();
+                actionBar.setTitle("Giỏ hàng ");
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 break;
 
@@ -69,16 +79,38 @@ public class MainActivity extends AppCompatActivity {
         ft.commit(); //Lưu lại màn hình hiện tại
     }
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()== android.R.id.home){
+        Fragment fragment = null;
+        if (item.getItemId() == android.R.id.home) {
             display(R.id.mnuHome);
-            return  true;
+            return true;
 
         }
+
+        switch (item.getItemId()){
+            case R.id.item1:
+                fragment = new HistoryFragment();
+
+               ActionBar  actionBar = getSupportActionBar();
+                actionBar.setTitle("Lịch sử đơn hàng ");
+
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                break;
+
+        }
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content,fragment);// thay thế cái framelayout bằng 1 trong các màn hình trên
+        ft.commit(); //Lưu lại màn hình hiện tại
+
         return true;
 
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar,menu);
+        return true;
+    }
 }
 
 

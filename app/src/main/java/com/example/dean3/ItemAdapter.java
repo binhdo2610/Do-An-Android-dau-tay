@@ -42,10 +42,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemVH> {
 
 
 
-      holder.itemView.setOnClickListener(new View.OnClickListener() {
+      holder.btnBuy.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              listener.onItemListener(item);
+
+
 
           }
       });
@@ -62,6 +63,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemVH> {
         EditText edValue;
         Button btnPlus;
         Button btnMinus;
+        Button btnBuy;
 
         ImageButton btnDelete;
 
@@ -73,6 +75,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemVH> {
             edValue = itemView.findViewById(R.id.edValue);
             btnPlus= itemView.findViewById(R.id.btnplus);
             btnMinus=itemView.findViewById(R.id.btnminus);
+            btnBuy=itemView.findViewById(R.id.btBuy);
 
             btnDelete=itemView.findViewById(R.id.btndelete);
 

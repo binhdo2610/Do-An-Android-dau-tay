@@ -33,8 +33,8 @@ public class App extends Application {
     }
 
     public static ArrayList<Item> getItem() {
-        db.add(new Item(R.mipmap.ic_launcher, "StandeeWibu", "Mô hình đồ chơi "));
-        db.add(new Item(R.drawable.img, "StandeeNaruto", "Mô hình naruto"));
+        db.add(new Item(R.mipmap.ic_launcher, "StandeeWibu", "Mô hình đồ chơi ",100.000));
+        db.add(new Item(R.drawable.img, "StandeeNaruto", "Mô hình naruto",200.000));
 
         return db;
     }

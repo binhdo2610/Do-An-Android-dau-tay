@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,23 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dean3.App;
 import com.example.dean3.Item;
-import com.example.dean3.ItemAdapter;
 import com.example.dean3.R;
+import com.example.dean3.TrangChu.ItemHistoryAdapter;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GioHangFragment#newInstance} factory method to
+ * Use the {@link HistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GioHangFragment extends Fragment implements ItemAdapter.Listener{
-
-    RecyclerView rvStandee;
-    ArrayList<Item> Items;
-    ItemAdapter itemAdapter;
+public class HistoryFragment extends Fragment {
+    RecyclerView rvHistory;
+    ArrayList<Item> items ;
+    ItemHistoryAdapter historyAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +39,7 @@ public class GioHangFragment extends Fragment implements ItemAdapter.Listener{
     private String mParam1;
     private String mParam2;
 
-    public GioHangFragment() {
+    public HistoryFragment() {
         // Required empty public constructor
     }
 
@@ -51,11 +49,11 @@ public class GioHangFragment extends Fragment implements ItemAdapter.Listener{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GioHangFragment.
+     * @return A new instance of fragment HistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GioHangFragment newInstance(String param1, String param2) {
-        GioHangFragment fragment = new GioHangFragment();
+    public static HistoryFragment newInstance(String param1, String param2) {
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,28 +74,23 @@ public class GioHangFragment extends Fragment implements ItemAdapter.Listener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gio_hang, container, false);
+        return inflater.inflate(R.layout.fragment_history, container, false);
+
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvStandee=view.findViewById(R.id.rcView);
-        Items = App.getItem();
-        itemAdapter = new ItemAdapter(Items,this );
+        rvHistory=view.findViewById(R.id.rvHistory);
+        //list = App.
+
+        //= new ItemTrangChuAdapter(list);
+        historyAdapter =new ItemHistoryAdapter(items,this);
 
 
-        rvStandee.setAdapter(itemAdapter);
-        rvStandee.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        rvStandee.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-
-    }
-
-    @Override
-    public void onItemListener(Item standee) {
-
-
-
+        rvHistory.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        rvHistory.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
     }
 }

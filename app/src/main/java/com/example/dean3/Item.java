@@ -5,22 +5,22 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
 
-    public Item(int image, String name, String description) {
+    public Item(int image, String name, String description,double Price) {
         Image = image;
         this.name = name;
         this.description = description;
         this.price=price;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    long price ;
+    double price ;
     int Image;
     String name;
 
